@@ -13,7 +13,8 @@ const oauthRoutes = require("./routes/oauthRoutes");
 
 const app = express();
 
-app.use(cors());
+const corsOrigin = process.env.CORS_ORIGIN || "*";
+app.use(cors({ origin: corsOrigin === "*" ? true : corsOrigin }));
 app.use(express.json());
 
 
@@ -36,7 +37,7 @@ app.post("/api/test", (req, res) => {
   res.json({ ok: true });
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

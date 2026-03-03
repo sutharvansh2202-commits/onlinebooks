@@ -23,12 +23,10 @@ export default function Navbar() {
 
     async function fetchUser() {
       try {
-        const res = await fetch(
-          `http://localhost:5000/api/auth/user/${userId}`
-        );
-        const data = await res.json();
+        const res = await api.get(`/auth/user/${userId}`);
+        const data = res.data;
 
-        if (res.ok) {
+        if (data) {
           login(data);
         } else {
           localStorage.removeItem("userId");
