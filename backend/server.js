@@ -1,7 +1,9 @@
-require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const path = require("path");
+
+require("dotenv").config({ path: path.join(__dirname, ".env") });
 
 const bookRoutes = require("./routes/bookRoutes");
 const adminRoutes = require("./routes/admin");
