@@ -1,0 +1,11 @@
+{
+  "name": "online-book-store",
+  "private": true,
+  "workspaces": [
+    "backend"
+  ],
+  "scripts": {
+    "start": "npm --workspace backend start",
+    "build": "echo \"No build step required for backend\""
+  }
+}
