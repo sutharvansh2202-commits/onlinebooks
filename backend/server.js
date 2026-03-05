@@ -22,9 +22,31 @@ app.use(express.json());
 
 // MongoDB connection
 const mongoURI = process.env.MONGO_URI || "mongodb://localhost:27017/onlineBookStore";
-mongoose.connect(mongoURI)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB connection error:", err));
+const localMongoURI = process.env.MONGO_URI_LOCAL || "mongodb://127.0.0.1:27017/onlineBookStore";
+
+async function connectMongo() {
+  try {
+    await mongoose.connect(mongoURI);
+    console.log("MongoDB connected");
+  } catch (err) {
+    const isSrvDnsError = err && err.code === "ECONNREFUSED" && String(err.hostname || "").startsWith("_mongodb._tcp.");
+
+    if (isSrvDnsError) {
+      console.error("MongoDB SRV DNS lookup failed. Trying local MongoDB fallback...");
+      try {
+        await mongoose.connect(localMongoURI);
+        console.log("MongoDB connected (local fallback)");
+        return;
+      } catch (fallbackErr) {
+        console.error("MongoDB fallback connection error:", fallbackErr.message || fallbackErr);
+      }
+    } else {
+      console.error("MongoDB connection error:", err.message || err);
+    }
+  }
+}
+
+connectMongo();
 
 app.use("/api/books", bookRoutes);
 app.use("/api/admin", adminRoutes);
