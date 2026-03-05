@@ -342,6 +342,30 @@ h2 {
 
 .delete-btn:hover { background: #ffe4e6; }
 
+.edit-btn {
+  width: 100%;
+  margin-top: 0.65rem;
+  padding: 9px;
+  background: #eef2ff;
+  color: var(--primary);
+  border: 1px solid #c7d2fe;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.edit-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.edit-btn:active {
+  transform: translateY(1px);
+}
+
 /* Toast Notification */
 .toast {
   position: fixed;
