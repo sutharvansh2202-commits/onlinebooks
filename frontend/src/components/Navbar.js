@@ -158,25 +158,6 @@ export default function Navbar() {
     }
   };
 
-  const scrollToAllBooks = (e) => {
-    e.preventDefault();
-    setActiveLink("all-books");
-    if (window.location.pathname !== '/all-books') {
-      navigate('/all-books');
-      setTimeout(() => {
-        const allBooksSection = document.querySelector('#all-books-section');
-        if (allBooksSection) {
-          allBooksSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }, 100);
-    } else {
-      const allBooksSection = document.querySelector('#all-books-section');
-      if (allBooksSection) {
-        allBooksSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-  };
-
   const scrollToContact = (e) => {
     e.preventDefault();
     setActiveLink("contact");

@@ -28,14 +28,6 @@ export default function Admin() {
     }
   };
 
-  // Handler to toggle trending book selection
-  const handleTrendingSelect = (bookId) => {
-    setTrendingBooks((prev) =>
-      prev.includes(bookId)
-        ? prev.filter((id) => id !== bookId)
-        : [...prev, bookId]
-    );
-  };
   // ...existing code...
   const [formData, setFormData] = useState({
     title: "",
